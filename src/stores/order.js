@@ -18,19 +18,18 @@ const save = async (form) => {
   saving.set(true);
   const response = await api.post('orders', form);
   errors.set(null);
-  if (response.errors) {
+  if (response.status >= 400) {
     saving.set(false);
-    errors.set(response.errors);
+    errors.set(response.data.errors);
     return;
   }
-
-  success.set(response.message);
-  order.set(response.data);
-  addOrderToLoaded(response.data);
+  success.set(response.data.message);
+  order.set(response.data.data);
+  addOrderToLoaded(response.data.data);
 
   setTimeout(() => {
     saving.set(false);
-    goto('/dashboard/orders/' + response.data._id);
+    goto('/dashboard/orders/' + response.data.data._id);
   }, 2000);
 };
 

@@ -10,7 +10,7 @@
 <section>
   <div class="content">
       <div class="mt-10 mb-10">
-        <h2 class="page-title">My Order</h2>
+        <h2 class="page-title">My Orders</h2>
       </div>
       <MonthSpentCard />
       <OrdersList />

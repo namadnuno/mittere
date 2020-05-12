@@ -15,12 +15,14 @@
 <div class="card white mt-6">
   <div class="flex justify-between items-center">
     {#if order.product_image }
-      <div class="w-1/4">
+      <a href={"/dashboard/orders/" + order._id} class="w-1/4 block">
         <img src={order.product_image} alt={order.product_name} />
-      </div>
+      </a>
     {/if}
     <div class="w-2/4 px-3">
-      <h4 class="text-lg font-title truncate">{order.product_name}</h4>
+      <a href={"/dashboard/orders/" + order._id}>
+        <h4 class="text-lg font-title truncate">{order.product_name}</h4>
+      </a>
       <h5 class="text-2xl font-title">
         <Money value={order.price} />
       </h5>

@@ -1,6 +1,7 @@
 <script>
   import { loading, orders, getLatest } from "../../stores/latests";
   import NoOrdersPanel from './NoOrdersPanel.svelte';
+  import OrderItem from './OrderItem.svelte';
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -13,7 +14,7 @@
   {#if !$loading}
     {#if $orders.length > 0}
       {#each $orders as order}
-        <div class="slide-content">{order.product_name}</div>
+        <OrderItem {order} />
       {/each}
     {:else}
       <NoOrdersPanel></NoOrdersPanel>
