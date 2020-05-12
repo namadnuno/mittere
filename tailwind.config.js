@@ -296,6 +296,7 @@ module.exports = {
       header: '300px',
       full: '100%',
       screen: '100vh',
+      '40': '4rem',
       '130px': '130px'
     }),
     inset: {
@@ -448,6 +449,7 @@ module.exports = {
       '18': '2rem',
       '26': '2.75rem',
       '32': '3rem',
+      '40': '4rem',
       '10': '10rem',
       full: '100%',
       screen: '100vw',

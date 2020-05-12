@@ -30,7 +30,7 @@
                 <Money value={$stats.spent} />
               </h3>
             </div>
-            <div class="card-stat mb-0">
+            <div class="">
               <h4 class="card-title-xs">Monthly goal</h4>
               <h3 class="card-value">
                 <Money value={$stats.goal} />
