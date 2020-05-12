@@ -70,15 +70,27 @@
   }
 
   .card {
-    @apply rounded bg-gray-100 w-full py-8 px-6 shadow-xs;
+    @apply rounded w-full py-8 px-6 shadow-xs;
+  }
+
+  .card.default {
+    @apply text-black bg-gray-100;
+  }
+
+  .card.success {
+    @apply text-white bg-green-500;
   }
 
   .card-title-xs {
     @apply font-body text-sm font-bold text-gray-500 mb-2;
   }
 
+  .card.success .card-title-xs {
+    @apply text-white bg-green-500 text-white;
+  }
+
   .card-value {
-    @apply font-title text-3xl font-bold text-black;
+    @apply font-title text-3xl font-bold;
   }
 
   .card-stat {

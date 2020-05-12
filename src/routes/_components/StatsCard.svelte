@@ -21,7 +21,7 @@
   <div class="content">
     <h1 class="page-title pt-10">Overview</h1>
     {#if !$loading}
-      <div class="card mt-10">
+      <div class="card default mt-10">
         <div class="flex justify-between">
           <div class="stats">
             <div class="card-stat">

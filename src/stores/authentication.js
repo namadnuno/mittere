@@ -21,7 +21,7 @@ const login = async (formData) => {
   }
 
   loginUser(response.data);
-goto('/dashboard');
+  goto('/dashboard');
 };
 
 export { errors, loading, login };

@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 import * as api from 'api.js';
 import { goto } from '@sapper/app';
+import differenceInMinutes from 'date-fns/differenceInMinutes';
 
 let order = writable(null);
 let loading = writable(true);
@@ -25,8 +26,9 @@ const save = async (form) => {
 
   success.set(response.message);
   order.set(response.data);
-  ordersLoaded.update((orders) =>
-    orders.push({ ...response.data, loadedAt: Date.now() })
+  ordersLoaded.update(
+    (orders) =>
+      (orders = [...orders, { ...response.data, loadedAt: Date.now() }])
   );
 
   setTimeout(() => {
@@ -42,10 +44,10 @@ const loadOrder = async (id) => {
     loading.set(false);
     errors.set(response.errors);
     return;
-	}
-	
-	order.set(response);
-	loading.set(false);
+  }
+  console.log(response);
+  order.set(response);
+  loading.set(false);
 };
 
 const getOrder = (id) => {
@@ -53,7 +55,6 @@ const getOrder = (id) => {
   ordersLoaded.subscribe(
     (orders) => (_order = orders.find((o) => o._id == id))
   );
-
   if (!_order || !canLoad(_order.loadedAt)) {
     return loadOrder(id);
   }
