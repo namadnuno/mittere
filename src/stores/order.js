@@ -26,10 +26,7 @@ const save = async (form) => {
 
   success.set(response.message);
   order.set(response.data);
-  ordersLoaded.update(
-    (orders) =>
-      (orders = [...orders, { ...response.data, loadedAt: Date.now() }])
-  );
+  addOrderToLoaded(response.data);
 
   setTimeout(() => {
     saving.set(false);
@@ -37,23 +34,70 @@ const save = async (form) => {
   }, 2000);
 };
 
+const updateLoaded = (order) => {
+  ordersLoaded.update(
+    orders => {
+      let index = orders.findIndex(o => o._id == order._id);
+
+      if (index > -1) {
+        orders.splice(index, 1);
+      }
+
+      addOrderToLoaded(order);
+    }
+  );
+}
+
+const addOrderToLoaded = (order) => {
+  ordersLoaded.update(
+    (orders) =>
+    (orders = [...orders, { ...order, loadedAt: Date.now() }])
+  );
+}
+
+const update = async (form) => {
+  saving.set(true);
+  const response = await api.put('orders/' + form._id, form);
+  errors.set(null);
+
+  if (response.status >= 400) {
+    saving.set(false);
+    errors.set(response.errors);
+    return;
+  }
+
+  success.set(response.data.message);
+  order.set(response.data.data);
+  updateLoaded(response.data.data);
+
+  setTimeout(() => {
+    saving.set(false);
+    goto('/dashboard/orders/' + response.data.data._id);
+  }, 2000);
+};
+
 const loadOrder = async (id) => {
   loading.set(true);
   const response = await api.get('orders/' + id);
-  if (response.errors) {
+  
+  if (response.status >= 400) {
     loading.set(false);
     errors.set(response.errors);
     return;
   }
-  console.log(response);
-  order.set(response);
+
+  order.set(response.data);
   loading.set(false);
 };
 
 const getOrder = (id) => {
   let _order;
   ordersLoaded.subscribe(
-    (orders) => (_order = orders.find((o) => o._id == id))
+    (orders) => {
+      if (orders) {
+        _order = orders.find((o) => o._id == id)
+      }
+    }
   );
   if (!_order || !canLoad(_order.loadedAt)) {
     return loadOrder(id);
@@ -62,4 +106,15 @@ const getOrder = (id) => {
   order.set(_order);
 };
 
-export { saving, errors, loading, save, success, getOrder, order };
+const remove = async (id) => {
+  loading.set(true);
+  await api.del('orders/' + id);
+  loading.set(false);
+}
+
+const reset = () => {
+  loading.set(true);
+  // ordersLoaded.set([]);
+}
+
+export { saving, errors, loading, save, success, getOrder, order, remove, update,reset };

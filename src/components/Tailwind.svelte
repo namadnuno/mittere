@@ -89,6 +89,10 @@
     @apply text-white bg-green-500 text-white;
   }
 
+  .card.white {
+    @apply text-white bg-white text-black;
+  }
+
   .card-value {
     @apply font-title text-3xl font-bold;
   }

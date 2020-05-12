@@ -1,9 +1,9 @@
 <script>
-  import { getOrder, order, loading } from "../../../stores/order";
+  import { getOrder, order, loading } from "../../../../stores/order";
   import { stores } from "@sapper/app";
   import { onMount } from "svelte";
-  import Money from "../../../components/Money.svelte";
-  import CardValue from "../../_components/CardValue.svelte";
+  import Money from "../../../../components/Money.svelte";
+  import CardValue from "../../../_components/CardValue.svelte";
   const { page } = stores();
 
   onMount(() => {

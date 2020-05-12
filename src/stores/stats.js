@@ -13,7 +13,8 @@ const getStats = async () => {
 		errors.set(response.error);
 		return;
 	}
-	stats.set(response);
+	
+	stats.set(response.data);
 	loading.set(false);
 };
 

@@ -28,7 +28,7 @@ const getLatest = async () => {
     return;
   }
 
-  orders.set(response);
+  orders.set(response.data);
   loaded.set(true);
   loadedAt.set(Date.now());
   loading.set(false);

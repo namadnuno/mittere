@@ -19,7 +19,7 @@ const login = async (formData) => {
     errors.set({ message: 'Could not connect to the api' });
     return;
   }
-
+  console.log(response)
   loginUser(response.data);
   goto('/dashboard');
 };
