@@ -2,6 +2,7 @@
   import Field from "../components/Field.svelte";
   import LogoHeader from "../components/LogoHeader.svelte";
   import { errors, loading, login } from "../stores/authentication";
+  import Alert from "./_components/Alert.svelte";
   import { post } from "utils.js";
 
   let email = "";
@@ -18,8 +19,11 @@
 
 <LogoHeader />
 <section class="content">
-  <pre>{($errors, $loading)}</pre>
   <h2 class="page-title">Enter to check out your orders</h2>
+
+  {#if $errors && $errors.message}
+    <Alert level="danger" message={$errors.message} />
+  {/if}
   <form on:submit|preventDefault={handleSubmit} action="/login" class="mt-8">
     <Field type="text" label="Email" name="email" bind:value={email} />
     <Field
@@ -33,7 +37,11 @@
       </a>
     </div>
     <div class="mt-8">
-      <button type="submit" class="button success w-full block">Enter</button>
+      <button
+        type="submit"
+        class={$loading ? 'button loading w-full block' : 'button success w-full block'}>
+        Enter
+      </button>
     </div>
   </form>
 </section>

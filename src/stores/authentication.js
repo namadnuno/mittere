@@ -6,22 +6,22 @@ import { session } from '../stores/stores';
 let loading = writable(false);
 let errors = writable(null);
 
-const setErrors = (errs) => errors.set(errs);
-
 const loginUser = (user) => {
-	session.user = user;
+  session.user = user;
 };
 
 const login = async (formData) => {
-	loading.set(true);
-	const response = await post('/auth/login', formData);
-	loginUser(response.data);
-	if (response.error) {
-		setErrors(response.error);
-		return;
-	}
-	loading.set(false);
-	goto('/dashboard');
+  loading.set(true);
+  const response = await post('/auth/login', formData);
+  loading.set(false);
+
+  if (response.status > 400) {
+    errors.set({ message: 'Could not connect to the api' });
+    return;
+  }
+
+  loginUser(response.data);
+goto('/dashboard');
 };
 
 export { errors, loading, login };
