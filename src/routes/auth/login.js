@@ -8,7 +8,7 @@ export function post(req, res) {
       if (response) req.session.user = response;
       res.setHeader('Content-Type', 'application/json');
 
-      res.statusCode = response.status;
+      res.statusCode = 200;
       res.end(JSON.stringify(response));
     })
     .catch((err) => {
