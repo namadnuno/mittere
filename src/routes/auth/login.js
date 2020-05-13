@@ -5,7 +5,7 @@ export function post(req, res) {
     .post('account/login', req.body)
     .then((response) => {
       console.log(response);
-      if (response) req.session.user = response;
+      if (response) req.session.user = response.data;
       res.setHeader('Content-Type', 'application/json');
 
       res.statusCode = 200;

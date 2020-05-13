@@ -5,7 +5,8 @@
   export let options = [];
   export let type = "text";
   export let errors = {};
-  $: classes = errors && errors[name] ? "input with-error" : "input";
+  $: hasErrors = errors && errors[name];
+  $: classes = hasErrors ? "input with-error" : "input";
   const handleInput = e => {
     // in here, you can switch on type and implement
     // whatever behaviour you need
@@ -37,7 +38,7 @@
       bind:value
       on:input={handleInput} />
   {/if}
-  {#if errors && errors[name]}
+  {#if hasErrors}
     <p class="text-red-500 text-xs italic mt-3">{errors[name].message}</p>
   {/if}
 </div>
