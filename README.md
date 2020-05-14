@@ -1,6 +1,6 @@
 # Mittere
 
-![logo](logo.png)
+![logo](logo-dark.png)
  
 A sample app built with sapper + svelte + tailwindcss.
 This application has the objective of tracking our packages, letting you to add packages see their status anf finally see where they are (this latest feature is not implemented).
@@ -36,4 +36,19 @@ In the API i am using Node express + mongo + JWT
   - shop_url
   - shipping_tracker
   - price
-  - orderedAt,
+  - orderedAt
+
+# Pages
+
+## Login
+![login](images/login.jpg)
+## Overview
+![overview](images/overview.jpg)
+## Orders
+![my_orders](images/my_orders.jpg)
+## Order
+![order](images/order.jpg)
+
+# Conclusion
+
+If you have any doubts or anything to say, contact me at nunnomalex@gmail.com.
