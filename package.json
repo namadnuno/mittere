@@ -22,7 +22,7 @@
     "node-fetch": "^2.6.0",
     "numeral": "^2.0.6",
     "polka": "^0.5.2",
-    "postcss": "^7.0.29",
+    "postcss": "^7.0.36",
     "postcss-load-config": "^2.1.0",
     "session-file-store": "^1.2.0",
     "sirv": "^0.4.2",
