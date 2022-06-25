@@ -19,7 +19,7 @@
     "compression": "^1.7.1",
     "date-fns": "^2.13.0",
     "express-session": "^1.16.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "numeral": "^2.0.6",
     "polka": "^0.5.2",
     "postcss": "^7.0.29",
